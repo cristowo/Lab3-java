@@ -14,9 +14,12 @@ a continuación los objetivos a realizar y su estado hasta el momento
 ### Dobble            |PROGRESO
 
 Cardsset avanzado
+NthCard Listo
+isDouble Listo
 
 ### Card              |PROGRESO
 
-Clase Card realizada, falta afinar
+Clase Card realizada
+Se añadio funciones extras
 
 ### Player            |PROGRESO
