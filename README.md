@@ -16,6 +16,10 @@ a continuación los objetivos a realizar y su estado hasta el momento
 Cardsset avanzado
 NthCard Listo
 isDouble Listo
+elementRequerid Listo
+numCards Listo
+FindTotalCards Listo
+Missing Cards Listo
 
 ### Card              |PROGRESO
 
