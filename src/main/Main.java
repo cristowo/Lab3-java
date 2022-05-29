@@ -1,11 +1,12 @@
 package main;
 
-import model.Dobble;
+import controller.Controlador;
 
 public class Main{
     public static void main(String [] arg) {
-        Dobble mazo = new Dobble(3, 5, true);
-        System.out.println(mazo.getMazo());
+        Controlador tablero = new Controlador(3, 3, "nose");
+        tablero.registUser("cri");
+        System.out.println(tablero.getListaPlayers());
     }
 }
 
