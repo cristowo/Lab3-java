@@ -1,12 +1,10 @@
 package main;
 
-import controller.Controlador;
-
+import view.Menu;
 public class Main{
     public static void main(String [] arg) {
-        Controlador tablero = new Controlador(3, 3, "nose");
-        tablero.registUser("cri");
-        System.out.println(tablero.getListaPlayers());
+        Menu menu = new Menu();
+        menu.ejecutarMenu();
     }
 }
 

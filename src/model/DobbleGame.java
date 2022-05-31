@@ -10,6 +10,7 @@ public class DobbleGame {
     private ArrayList<Player> ListPlayers;
 
     public DobbleGame(Integer NumPlayers, Integer TamCardSet, String modo){
+        ListPlayers = new ArrayList<Player>();
         mazoDobblegame = new Dobble(TamCardSet, -1, true);
         modalidad = modo;
         estado = "Preparacion";
@@ -58,14 +59,19 @@ public class DobbleGame {
     }
 
     // -----------------------------------------------------------------------------
-
-    public void addPlayer(Player player) {
-        ListPlayers.add(player);
+    public void registUser (String nombre){
+        if(0 < numPlayers){
+            Player jugador = new Player(nombre);
+            ListPlayers.add(jugador);
+            numPlayers = numPlayers -1;
+        }
     }
+    // -----------------------------------------------------------------------------
+
 
     @Override
     public String toString() {
-        return "DobbleGame{}";
+        return "";
     }
 
 }
