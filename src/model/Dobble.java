@@ -94,12 +94,14 @@ public class Dobble {
         for(int i=0; i < mazo.size();i++){
             for(int j=i+1; j <mazo.size();j++){
                 if( (mazo.get(i)).TamCard() != (mazo.get(j)).TamCard() ){     //caso cuando hay una carta con mas o menos elementos
+                    System.out.println("-----------Mazo No Funcional----------");
                     return false;
                 }
             }
         }
         for(int i=0; i < mazo.size();i++){
             if( ((mazo.get(i)).EleComun(mazo.get(i))).size() != (mazo.get(i)).TamCard() ){   //caso cuando una carta tiene 1 o mas elementos repetidos
+                System.out.println("-----------Mazo No Funcional----------");
                 return false;
             }
         }
@@ -108,6 +110,7 @@ public class Dobble {
             for (int j=i+1; j < mazo.size(); j++) {
                 (mazo.get(i)).CopyCard(cardAux);
                 if( ( cardAux.EleComun(mazo.get(j))).size() != 1 ){     //caso cuando hay 0 o mas de 1 elemento en comun
+                    System.out.println("-----------Mazo No Funcional----------");
                     return false;
                 }
             }

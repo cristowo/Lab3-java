@@ -11,7 +11,7 @@ public class DobbleGame {
 
     public DobbleGame(Integer NumPlayers, Integer TamCardSet, String modo){
         ListPlayers = new ArrayList<Player>();
-        mazoDobblegame = new Dobble(TamCardSet, -1, true);
+        mazoDobblegame = new Dobble( (TamCardSet), -1, true);
         modalidad = modo;
         estado = "Preparacion";
         numPlayers= NumPlayers;
@@ -61,17 +61,33 @@ public class DobbleGame {
     // -----------------------------------------------------------------------------
     public void registUser (String nombre){
         if(0 < numPlayers){
-            Player jugador = new Player(nombre);
-            ListPlayers.add(jugador);
-            numPlayers = numPlayers -1;
+            boolean repetido = false;
+            for(int i=0; i<ListPlayers.size();i++){
+                String nameAux = new String(ListPlayers.get(i).getName());
+                if(nameAux.equals(nombre)){
+                    repetido = true;
+                    System.out.println("--------------------------------------");
+                    System.out.println("-------Jugador ya registrado!!!-------");
+                    System.out.println("--------------------------------------");
+                }
+            }
+            if(repetido == false) {
+                Player jugador = new Player(nombre);
+                ListPlayers.add(jugador);
+                numPlayers = numPlayers - 1;
+            }
         }
     }
     // -----------------------------------------------------------------------------
 
-
     @Override
     public String toString() {
-        return "";
+        return "DobbleGame{" +
+                "estado='" + estado + '\'' +
+                ", mazoDobblegame=" + mazoDobblegame +
+                ", numPlayers=" + numPlayers +
+                ", modalidad='" + modalidad + '\'' +
+                ", ListPlayers=" + ListPlayers +
+                '}';
     }
-
 }

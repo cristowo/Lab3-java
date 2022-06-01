@@ -40,4 +40,12 @@ public class Player{
         this.puntos = puntos;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", turno=" + turno +
+                ", puntos=" + puntos +
+                '}';
+    }
 }
