@@ -1,6 +1,7 @@
 package view;
 
 import model.DobbleGame;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -31,18 +32,18 @@ public class Menu {
                                 System.out.println("Este modo consiste en que debe ingresar");
                                 System.out.println("--el elemento en común entre 2 cartas--");
                                 System.out.println("-------para poder ganas puntos.--------");
-                                System.out.println("Porfavor ingrese cualquier número para continuar");
-                                int aux = scan.nextInt();
+                                System.out.println("Porfavor toque any tecla para continuar");
+                                scan.next();
 
                                 while (Exit < 2) {
-                                    System.out.println("-----------THE DOBBLE GAME-------------");
-                                    System.out.println("---Ingrese la cantidad de jugadores:---");
-                                    int numPlayers = scan.nextInt();
-
                                     System.out.println("-----------THE DOBBLE GAME-------------");
                                     System.out.println("---Ingrese la cantidad de elementos:---");
                                     System.out.println("(Tome en cuenta solo numeros no primos)");
                                     int numElem = scan.nextInt();
+
+                                    System.out.println("-----------THE DOBBLE GAME-------------");
+                                    System.out.println("---Ingrese la cantidad de jugadores:---");
+                                    int numPlayers = scan.nextInt();
 
                                     Tablero = new DobbleGame(numPlayers, numElem, "Stack");
                                     if(Tablero.getMazoDobblegame().isDobble() == false){
@@ -87,18 +88,30 @@ public class Menu {
                 int eleccion3 = scan.nextInt();
                 switch (eleccion3) {
                     case 1:
+                        int Seleccion = 0;
+                        int posicion =0;
                         Tablero.setEstado("En progreso");
-                        System.out.println("-----------THE DOBBLE GAME-------------");
-                        System.out.println("----------- Turno de: "+ Tablero.whoseTurnIs()+" ------------");
-                        System.out.println("------Puntos: "+ Tablero.getPointForName(Tablero.whoseTurnIs()) +" ------ Turno: "+ Tablero.getPointForName(Tablero.whoseTurnIs()) +" -------");
-                        System.out.println("---------------------------------------");
-                        System.out.println("-------"+ Tablero.getMazoDobblegame().getMazo().get(0) +" --- "+ Tablero.getMazoDobblegame().getMazo().get(1) +" --------");
-                        System.out.println("---------------------------------------");
+                        while(Tablero.getEstado().equals("En progreso")) {
+                            if( 2 < Tablero.getMazoDobblegame().getMazo().size() || Tablero.getEstado().equals("Finalizado") ){
+                                posicion = Tablero.getPosicionForName(Tablero.whoseTurnIs());
+                                System.out.println("-----------THE DOBBLE GAME-------------");
+                                System.out.println("----------- Turno de: " + Tablero.whoseTurnIs() + " ------------");
+                                System.out.println("----- Puntos: " + Tablero.getPointForName(Tablero.whoseTurnIs()) + " ------ Turno: " + Tablero.getTurnForName(Tablero.whoseTurnIs()) + " -------");
+                                System.out.println("---------------------------------------");
+                                System.out.println("------ " + Tablero.getMazoDobblegame().getMazo().get(0) + " --- " + Tablero.getMazoDobblegame().getMazo().get(1) + " --------");
+                                System.out.println("---------------------------------------");
+                                System.out.println("---Escriba 0 si desea pasar su turno---");
+                                System.out.println("-Escriba -1 si desea finalizar el game-");
+                                System.out.println("---------------------------------------");
+                                Seleccion = scan.nextInt();
+                                Tablero.play(Seleccion, Tablero.getMazoDobblegame(), posicion);
+                            }
+                            else{
+                                Tablero.setEstado("Finalizado");
+                            }
 
+                        }
                         break;
-
-
-
 
                     case 2:
                         System.out.println("Hasta luego!!!");

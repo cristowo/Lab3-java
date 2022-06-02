@@ -83,7 +83,7 @@ public class DobbleGame {
         int menor=ListPlayers.get(0).getTurno();
         String nameMenor = new String(ListPlayers.get(0).getName());
         for(int i=1; i < ListPlayers.size();i++){
-            if(ListPlayers.get(i).getPuntos() < menor){
+            if(ListPlayers.get(i).getTurno() < menor){
                 menor = ListPlayers.get(i).getTurno();
                 nameMenor = ListPlayers.get(i).getName();
             }
@@ -94,7 +94,6 @@ public class DobbleGame {
     public Integer getPointForName(String name){
         int i= 0;
         while(!ListPlayers.get(i).getName().equals(name)) {
-            System.out.println(ListPlayers.get(i).getName());
             i++;
         }
         return ListPlayers.get(i).getPuntos();
@@ -103,14 +102,38 @@ public class DobbleGame {
     public Integer getTurnForName(String name){
         int i= 0;
         while(!ListPlayers.get(i).getName().equals(name)) {
-            System.out.println(ListPlayers.get(i).getName());
             i++;
         }
         return ListPlayers.get(i).getTurno();
     }
 
-    // -----------------PLAY--------------------------------------------------------
+    public Integer getPosicionForName(String name){
+        for(int i=0 ; i<ListPlayers.size(); i++){
+            if(ListPlayers.get(i).getName().equals(name)){
+                return i;
+            }
+        }
+        return 0;
+    }
 
+    // -----------------PLAY--------------------------------------------------------
+    public void play(Integer elem, Dobble mazo, Integer posicion) {
+        if (modalidad.equals("Stack")) {
+            if (elem == 0) {
+                ListPlayers.get(posicion).setTurno(ListPlayers.get(posicion).getTurno() + 1);
+            }
+            if (elem < 0){
+                setEstado("Finalizado");
+            }
+            else {
+                if (elem.equals(mazo.getMazo().get(0).EleComun(mazo.getMazo().get(1)).get(0))) {
+                    ListPlayers.get(posicion).setPuntos(ListPlayers.get(posicion).getPuntos() + 1);
+                }
+                ListPlayers.get(posicion).setTurno(ListPlayers.get(posicion).getTurno() + 1);
+                mazoDobblegame.EliminarCard();
+            }
+        }
+    }
 
 
 

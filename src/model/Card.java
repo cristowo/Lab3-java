@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 /*-------------------------------------------------------------------------------------------
  * Definicion de clase
  * --------------------------------------------------------------------------------------------- */
@@ -60,6 +61,11 @@ public class Card {
             card2.addECarta(carta.get(i));
         }
     }
+
+    public void cardRandom(){
+        Collections.shuffle(carta);
+    }
+    
     @Override
     public String toString() {
         return carta+"";

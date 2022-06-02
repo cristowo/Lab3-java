@@ -157,6 +157,19 @@ public class Dobble {
         }
         return mazoMissing.getMazo();
     }
+
+    public void AddCardMazo(Card card){
+        mazo.add(card);
+    }
+
+    public void EliminarCard(){
+        ArrayList<Card> mazoaux = new ArrayList<Card>();
+        for(int i=2; i<mazo.size();i++){
+            mazoaux.add(mazo.get(i));
+        }
+        this.mazo = mazoaux;
+    }
+
     /*-------------------------------------------------------------------------------------------
      * MazoToString
      * --------------------------------------------------------------------------------------------- */
