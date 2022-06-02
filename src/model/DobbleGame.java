@@ -79,6 +79,41 @@ public class DobbleGame {
         }
     }
     // -----------------------------------------------------------------------------
+    public String whoseTurnIs(){
+        int menor=ListPlayers.get(0).getTurno();
+        String nameMenor = new String(ListPlayers.get(0).getName());
+        for(int i=1; i < ListPlayers.size();i++){
+            if(ListPlayers.get(i).getPuntos() < menor){
+                menor = ListPlayers.get(i).getTurno();
+                nameMenor = ListPlayers.get(i).getName();
+            }
+        }
+        return nameMenor;
+    }
+
+    public Integer getPointForName(String name){
+        int i= 0;
+        while(!ListPlayers.get(i).getName().equals(name)) {
+            System.out.println(ListPlayers.get(i).getName());
+            i++;
+        }
+        return ListPlayers.get(i).getPuntos();
+    }
+
+    public Integer getTurnForName(String name){
+        int i= 0;
+        while(!ListPlayers.get(i).getName().equals(name)) {
+            System.out.println(ListPlayers.get(i).getName());
+            i++;
+        }
+        return ListPlayers.get(i).getTurno();
+    }
+
+    // -----------------PLAY--------------------------------------------------------
+
+
+
+
 
     @Override
     public String toString() {

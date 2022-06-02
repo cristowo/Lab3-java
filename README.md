@@ -9,9 +9,15 @@ Espacio de trabajo para la realizacion del laboratorio 3 de paradigmas de progra
 
 a continuación los objetivos a realizar y su estado hasta el momento
 
-### DobbleGame        |PROGRESO
+### MENU              |EN PROGRESO
+En progreso
 
-### Dobble            |PROGRESO
+### DobbleGame        |EN PROGRESO
+whoseTurnis Listo
+register Listo
+Se añadio funciones extras
+
+### Dobble            |LISTO?
 
 Cardsset avanzado
 NthCard Listo
@@ -21,9 +27,10 @@ numCards Listo
 FindTotalCards Listo
 Missing Cards Listo
 
-### Card              |PROGRESO
+### Card              |LISTO?
 
 Clase Card realizada
 Se añadio funciones extras
 
-### Player            |PROGRESO
+### Player            |LISTO?
+si
