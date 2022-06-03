@@ -40,6 +40,9 @@ public class Player{
         this.puntos = puntos;
     }
 
+    // PLAYER EQUAL
+
+
     @Override
     public String toString() {
         return "Player{" +

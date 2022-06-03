@@ -9,6 +9,7 @@ public class DobbleGame {
     private String modalidad;
     private ArrayList<Player> ListPlayers;
 
+
     public DobbleGame(Integer NumPlayers, Integer TamCardSet, String modo){
         ListPlayers = new ArrayList<Player>();
         mazoDobblegame = new Dobble( (TamCardSet), -1, true);
@@ -115,27 +116,54 @@ public class DobbleGame {
         }
         return 0;
     }
+    //----------------- Put List --------------------------------------------------
 
-    // -----------------PLAY--------------------------------------------------------
+    // ---------------- PLAY -------------------------------------------------------
     public void play(Integer elem, Dobble mazo, Integer posicion) {
         if (modalidad.equals("Stack")) {
             if (elem == 0) {
                 ListPlayers.get(posicion).setTurno(ListPlayers.get(posicion).getTurno() + 1);
             }
-            if (elem < 0){
+            else if (elem < 0){
                 setEstado("Finalizado");
             }
             else {
-                if (elem.equals(mazo.getMazo().get(0).EleComun(mazo.getMazo().get(1)).get(0))) {
+                Card cardAux = new Card();
+                mazo.getMazo().get(0).CopyCard(cardAux);
+                if (elem.equals(cardAux.EleComun(mazo.getMazo().get(1)).get(0))) {
                     ListPlayers.get(posicion).setPuntos(ListPlayers.get(posicion).getPuntos() + 1);
+                    mazoDobblegame.EliminarCard();
                 }
                 ListPlayers.get(posicion).setTurno(ListPlayers.get(posicion).getTurno() + 1);
-                mazoDobblegame.EliminarCard();
             }
         }
     }
 
+    public void resultado(){
+        ArrayList<String> puestos = new ArrayList<String>();
+        int mayor = 0;
+        for(int i=0; i < ListPlayers.size();i++){
+            if(mayor < ListPlayers.get(i).getPuntos()){
+                mayor = ListPlayers.get(i).getPuntos();
+                puestos.clear();
+                puestos.add(ListPlayers.get(i).getName());
+            }
+            else if(mayor == ListPlayers.get(i).getPuntos()){
+                puestos.add(ListPlayers.get(i).getName());
+            }
+        }
 
+        if(1 < puestos.size()){
+            String result = new String(puestos.toString().replace("[",""));
+            result = result.replace("]","");
+            System.out.println("Ganadores: "+ result );
+            System.out.println("Con puntaje de: "+ getPointForName(puestos.get(0)) +" puntos.");
+        }
+        else {
+            System.out.println("Ganador: "+puestos.get(0));
+            System.out.println("Con puntaje de: "+ getPointForName(puestos.get(0)) +" puntos.");
+        }
+    }
 
 
     @Override
