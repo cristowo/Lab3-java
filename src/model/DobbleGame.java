@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DobbleGame {
     private String estado;
@@ -137,6 +138,23 @@ public class DobbleGame {
                 ListPlayers.get(posicion).setTurno(ListPlayers.get(posicion).getTurno() + 1);
             }
         }
+        else if (modalidad.equals("VSCPU")) {
+            if (elem == 0) {
+                ListPlayers.get(posicion).setTurno(ListPlayers.get(posicion).getTurno() + 1);
+            }
+            else if (elem < 0){
+                setEstado("Finalizado");
+            }
+            else {
+                Card cardAux = new Card();
+                mazo.getMazo().get(0).CopyCard(cardAux);
+                if (elem.equals(cardAux.EleComun(mazo.getMazo().get(1)).get(0))) {
+                    ListPlayers.get(posicion).setPuntos(ListPlayers.get(posicion).getPuntos() + 1);
+                    mazoDobblegame.EliminarCard();
+                }
+                ListPlayers.get(posicion).setTurno(ListPlayers.get(posicion).getTurno() + 1);
+            }
+        }
     }
 
     public void resultado(){
@@ -152,11 +170,10 @@ public class DobbleGame {
                 puestos.add(ListPlayers.get(i).getName());
             }
         }
-
         if(1 < puestos.size()){
             String result = new String(puestos.toString().replace("[",""));
             result = result.replace("]","");
-            System.out.println("Ganadores: "+ result );
+            System.out.println("Ganadores: "+ result);
             System.out.println("Con puntaje de: "+ getPointForName(puestos.get(0)) +" puntos.");
         }
         else {
@@ -165,7 +182,15 @@ public class DobbleGame {
         }
     }
 
-
+    //------------------------------------------------------------------------------------------------
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DobbleGame that = (DobbleGame) o;
+        return Objects.equals(estado, that.estado) && Objects.equals(mazoDobblegame, that.mazoDobblegame) && Objects.equals(numPlayers, that.numPlayers) && Objects.equals(modalidad, that.modalidad) && Objects.equals(ListPlayers, that.ListPlayers);
+    }
+    //------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
         return "DobbleGame{" +

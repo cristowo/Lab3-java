@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Player{
     // Atributos
     private String name;
@@ -41,7 +43,23 @@ public class Player{
     }
 
     // PLAYER EQUAL
-
+    //------------------------------------------------------------------------------------------------
+    public boolean PlayerEqual(Player player){
+        if(name.equals(player.getName()) && turno.equals(player.getTurno()) && puntos.equals(player.getPuntos())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    //------------------------------------------------------------------------------------------------------
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name) && Objects.equals(turno, player.turno) && Objects.equals(puntos, player.puntos);
+    }
 
     @Override
     public String toString() {

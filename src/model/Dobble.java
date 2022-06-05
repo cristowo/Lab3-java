@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -80,8 +81,14 @@ public class Dobble {
     /*-------------------------------------------------------------------------------------------
     * nthCard
     * --------------------------------------------------------------------------------------------- */
-    public Card nthCard(Integer n) {
-        return mazo.get(n);
+    public Card nthCard(Integer n2) {
+        int n = n2-1;
+        if (n < mazo.size() && n >= 0){
+            return mazo.get(n);
+        }
+        else{
+            return null;
+        }
     }
     /*-------------------------------------------------------------------------------------------
     * is Dobble
@@ -131,14 +138,14 @@ public class Dobble {
         return largo;
     }
     /*-------------------------------------------------------------------------------------------
-     * FindTotalCards falta probar
+     * FindTotalCards
      * --------------------------------------------------------------------------------------------- */
     public Integer FindTotalCards(Card carta) {
         int Tcard = ((carta.TamCard()-1)^2 + carta.TamCard() ) ;
         return Tcard;
     }
     /*-------------------------------------------------------------------------------------------
-     * ElemReque falta probar
+     * ElemReque
      * --------------------------------------------------------------------------------------------- */
     public Integer ElemReque(Card carta) {
         int EReq = ((carta.TamCard()-1)^2 + carta.TamCard() ) ;
@@ -150,12 +157,9 @@ public class Dobble {
     public ArrayList<Card> missingCards() {
         int largoT = (mazo.get(0)).TamCard();
         Dobble mazoMissing = new Dobble( largoT ,-1,false);
-        Card cardAux = new Card();
-
         for (int i = 0; i < mazo.size(); i++) {
             for (int j = 0; j < (mazoMissing.numCards()); j++) {
-                (mazo.get(i)).CopyCard(cardAux);
-                if ((cardAux.EleComun(mazoMissing.getMazo().get(j))).size() == largoT) {                //caso la carta si esta dentro del mazo
+                if (mazo.get(i).equals(mazoMissing.getMazo().get(j))) {                //caso la carta si esta dentro del mazo
                     mazoMissing.getMazo().remove(mazoMissing.getMazo().get(j));
                     j--;
                 }
@@ -163,7 +167,7 @@ public class Dobble {
         }
         return mazoMissing.getMazo();
     }
-
+    //-------------------------------------------------------------------------------------------------------
     public void AddCardMazo(Card card){
         mazo.add(card);
     }
@@ -175,11 +179,21 @@ public class Dobble {
         }
         this.mazo = mazoaux;
     }
+    //--------EQUAL---------------------------------------------------------------------------------------
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dobble dobble = (Dobble) o;
+        return Objects.equals(Largo, dobble.Largo) && Objects.equals(NumC, dobble.NumC) && Objects.equals(mazo, dobble.mazo);
+    }
+
+    //-------------------------------------------------------------------------------------------------------
+
 
     /*-------------------------------------------------------------------------------------------
      * MazoToString
      * --------------------------------------------------------------------------------------------- */
-
     @Override
     public String toString() {
         return mazo+"";

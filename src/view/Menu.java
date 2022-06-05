@@ -1,7 +1,7 @@
 package view;
 
 import model.DobbleGame;
-
+import java.util.Random;
 import java.util.Scanner;
 
 public class Menu {
@@ -52,14 +52,6 @@ public class Menu {
 
                                     System.out.println("---------------------------------------");
                                     System.out.println("-----------THE DOBBLE GAME-------------");
-                                    System.out.println("Ingrese con que Elementos desea jugar:-");
-                                    System.out.println("----------1. Números ------------------");
-                                    System.out.println("----------2. Letras -------------------");
-                                    System.out.println("---------------------------------------");
-                                    int ListElem = scan.nextInt();
-
-                                    System.out.println("---------------------------------------");
-                                    System.out.println("-----------THE DOBBLE GAME-------------");
                                     System.out.println("---Ingrese la cantidad de jugadores:---");
                                     System.out.println("---------------------------------------");
                                     int numPlayers = scan.nextInt();
@@ -89,8 +81,47 @@ public class Menu {
                                 }
                                 break;
                             case 2:
-                                System.out.println("En proceso xd");
-                                break;
+                                System.out.println("---------------------------------------");
+                                System.out.println("-----------THE DOBBLE GAME-------------");
+                                System.out.println("-- Ha seleccionado PLAYER VS CPU MODE -");
+                                System.out.println("Este modo consiste en que debe ingresar");
+                                System.out.println("--el elemento en común entre 2 cartas--");
+                                System.out.println("-------para poder ganas puntos---------");
+                                System.out.println("---mientras compites contra la CPU.----");
+                                System.out.println("--Porfavor toca Enter para continuar---");
+                                System.out.println("---------------------------------------");
+                                enter.nextLine();
+
+                                while (Exit < 2) {
+                                    System.out.println("---------------------------------------");
+                                    System.out.println("-----------THE DOBBLE GAME-------------");
+                                    System.out.println("---Ingrese la cantidad de elementos:---");
+                                    System.out.println("(Tome en cuenta solo numeros no primos)");
+                                    System.out.println("---------------------------------------");
+                                    int numElem = scan.nextInt();
+
+                                    Tablero = new DobbleGame(2, numElem, "VSCPU");
+                                    if (Tablero.getMazoDobblegame().isDobble() == false) {
+                                        System.out.println("---------------------------------------");
+                                        System.out.println("------Mazo no apto para jugar!!--------");
+                                        System.out.println("---------------------------------------");
+                                        break;
+                                    }
+                                    Tablero.registUser("CPU");
+
+                                    String newName = scan.nextLine();
+                                    while (0 < Tablero.getNumPlayers()) {
+                                        System.out.println("---------------------------------------");
+                                        System.out.println("-----------THE DOBBLE GAME-------------");
+                                        System.out.println("----------Ingrese su nombre:-----------");
+                                        System.out.println("---------------------------------------");
+                                        newName = scan.nextLine();
+                                        Tablero.registUser(newName);
+                                    }
+                                    Tablero.setEstado("ReadyForPlay");
+                                    Exit = 3;
+                                    break;
+                                }
                             case 3:
                                 System.out.println("Hasta luego!!!");
                                 Exit = 2;
@@ -129,7 +160,19 @@ public class Menu {
                                 System.out.println("---Escriba 0 si desea pasar su turno---");
                                 System.out.println("-Escriba -1 si desea finalizar el game-");
                                 System.out.println("---------------------------------------");
-                                Seleccion = scan.nextInt();
+                                if (Tablero.getModalidad().equals("Stack")){
+                                    Seleccion = scan.nextInt();
+                                }
+                                else if (Tablero.getModalidad().equals("VSCPU")){
+                                    Random random = new Random();
+                                    if(Tablero.whoseTurnIs().equals("CPU")){
+                                        int numRandom= random.nextInt(Tablero.getMazoDobblegame().getMazo().get(0).TamCard());
+                                        Seleccion = numRandom;
+                                    }
+                                    else{
+                                        Seleccion = scan.nextInt();
+                                    }
+                                }
                                 Tablero.play(Seleccion, Tablero.getMazoDobblegame(), posicion);
                             }
                             else{
