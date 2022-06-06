@@ -2,7 +2,7 @@ package model;
 
 import java.util.Objects;
 
-public class Player{
+public class Player implements interfases.Player{
     // Atributos
     private String name;
     private Integer turno;

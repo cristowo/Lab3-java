@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class DobbleGame {
+public class DobbleGame implements interfases.DobbleGame {
     private String estado;
     private Dobble mazoDobblegame;
     private Integer numPlayers;
@@ -93,7 +93,7 @@ public class DobbleGame {
         return nameMenor;
     }
 
-    public Integer getPointForName(String name){
+    public Integer getScoreForName(String name){
         int i= 0;
         while(!ListPlayers.get(i).getName().equals(name)) {
             i++;
@@ -174,11 +174,11 @@ public class DobbleGame {
             String result = new String(puestos.toString().replace("[",""));
             result = result.replace("]","");
             System.out.println("Ganadores: "+ result);
-            System.out.println("Con puntaje de: "+ getPointForName(puestos.get(0)) +" puntos.");
+            System.out.println("Con puntaje de: "+ getScoreForName(puestos.get(0)) +" puntos.");
         }
         else {
             System.out.println("Ganador: "+puestos.get(0));
-            System.out.println("Con puntaje de: "+ getPointForName(puestos.get(0)) +" puntos.");
+            System.out.println("Con puntaje de: "+ getScoreForName(puestos.get(0)) +" puntos.");
         }
     }
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /*-------------------------------------------------------------------------------------------
 * Definicion de clase
 * --------------------------------------------------------------------------------------------- */
-public class Dobble {
+public class Dobble implements interfases.Dobble {
     private Integer Largo; //NumE
     private Integer NumC;
     private ArrayList<Card> mazo;
@@ -79,11 +79,10 @@ public class Dobble {
         this.mazo = mazo;
     }
     /*-------------------------------------------------------------------------------------------
-    * nthCard
+    * nthCard desde 0
     * --------------------------------------------------------------------------------------------- */
-    public Card nthCard(Integer n2) {
-        int n = n2-1;
-        if (n < mazo.size() && n >= 0){
+    public Card nthCard(Integer n) {
+        if (n < mazo.size() && n > 0){
             return mazo.get(n);
         }
         else{

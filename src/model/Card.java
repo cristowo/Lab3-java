@@ -7,7 +7,7 @@ import java.util.Objects;
 /*-------------------------------------------------------------------------------------------
  * Definicion de clase
  * --------------------------------------------------------------------------------------------- */
-public class Card {
+public class Card implements interfases.Card {
     // Atributos
     private ArrayList<Integer> carta;
 
