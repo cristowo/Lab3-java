@@ -129,9 +129,7 @@ public class DobbleGame implements interfases.DobbleGame {
                 setEstado("Finalizado");
             }
             else {
-                Card cardAux = new Card();
-                mazo.getMazo().get(0).CopyCard(cardAux);
-                if (elem.equals(cardAux.EleComun(mazo.getMazo().get(1)).get(0))) {
+                if (elem.equals(mazo.getMazo().get(0).EleComun(mazo.getMazo().get(1)).get(0))) {
                     ListPlayers.get(posicion).setPuntos(ListPlayers.get(posicion).getPuntos() + 1);
                     mazoDobblegame.EliminarCard();
                 }
@@ -146,9 +144,7 @@ public class DobbleGame implements interfases.DobbleGame {
                 setEstado("Finalizado");
             }
             else {
-                Card cardAux = new Card();
-                mazo.getMazo().get(0).CopyCard(cardAux);
-                if (elem.equals(cardAux.EleComun(mazo.getMazo().get(1)).get(0))) {
+                if (elem.equals(mazo.getMazo().get(0).EleComun(mazo.getMazo().get(1)).get(0))) {
                     ListPlayers.get(posicion).setPuntos(ListPlayers.get(posicion).getPuntos() + 1);
                     mazoDobblegame.EliminarCard();
                 }
@@ -188,7 +184,30 @@ public class DobbleGame implements interfases.DobbleGame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DobbleGame that = (DobbleGame) o;
-        return Objects.equals(estado, that.estado) && Objects.equals(mazoDobblegame, that.mazoDobblegame) && Objects.equals(numPlayers, that.numPlayers) && Objects.equals(modalidad, that.modalidad) && Objects.equals(ListPlayers, that.ListPlayers);
+        if(Objects.equals(estado, that.estado) && mazoDobblegame.equals(mazoDobblegame) && Objects.equals(numPlayers, that.numPlayers) && Objects.equals(modalidad, that.modalidad)){
+            if(ListPlayers.size() != that.ListPlayers.size()){
+                return false;
+            }
+            else{
+                int aux = 0;
+                for(int i=0; i<ListPlayers.size();i++){
+                    for(int j=0; j<that.ListPlayers.size();j++){
+                        if(ListPlayers.get(i).equals(ListPlayers.get(j))){
+                            aux++;
+                        }
+                    }
+                }
+                if(aux == ListPlayers.size()){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        else{
+            return false;
+        }
     }
     //------------------------------------------------------------------------------------------------
     @Override

@@ -56,7 +56,12 @@ public class Menu {
                                     System.out.println("---Ingrese la cantidad de jugadores:---");
                                     System.out.println("---------------------------------------");
                                     int numPlayers = scan.nextInt();
-
+                                    if(numPlayers <= 1){
+                                        System.out.println("---------------------------------------");
+                                        System.out.println("--------NO PUEDES JUGAR SOLO!!!--------");
+                                        System.out.println("---------------------------------------");
+                                        break;
+                                    }
                                     Tablero = new DobbleGame(numPlayers, numElem, "Stack");
                                     if(Tablero.getMazoDobblegame().isDobble() == false){
                                         System.out.println("---------------------------------------");
@@ -148,7 +153,7 @@ public class Menu {
                         int Seleccion = 0;
                         int posicion =0;
                         while(Tablero.getEstado().equals("En progreso")) {
-                            if( 2 < Tablero.getMazoDobblegame().getMazo().size()){
+                            if( 2 < Tablero.getMazoDobblegame().getLargo()){
                                 posicion = Tablero.getPosicionForName(Tablero.whoseTurnIs());
                                 System.out.println("---------------------------------------");
                                 System.out.println("-----------THE DOBBLE GAME-------------");
@@ -166,8 +171,13 @@ public class Menu {
                                 else if (Tablero.getModalidad().equals("VSCPU")){
                                     Random random = new Random();
                                     if(Tablero.whoseTurnIs().equals("CPU")){
-                                        int numRandom= random.nextInt(Tablero.getMazoDobblegame().getMazo().get(0).TamCard());
-                                        Seleccion = Tablero.getMazoDobblegame().getMazo().get(0).getCarta().get(numRandom);
+                                        int numRandom = random.nextInt(3);
+                                        if(numRandom <= 2){
+                                            Seleccion = Tablero.getMazoDobblegame().getMazo().get(0).EleComun(Tablero.getMazoDobblegame().getMazo().get(1)).get(0);
+                                        }
+                                        else{
+                                            Seleccion= Tablero.getMazoDobblegame().getMazo().get(0).getCarta().get(numRandom);
+                                        }
                                         System.out.println("-----PRESIONE ENTER PARA CONTINUAR-----");
                                         System.out.println("---------------------------------------");
                                         enter.nextLine();
@@ -199,10 +209,5 @@ public class Menu {
             }
         }
         enter.nextLine();
-    }
-
-    @Override
-    public String toString() {
-        return Tablero +"";
     }
 }

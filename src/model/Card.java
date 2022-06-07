@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
+
 
 /*-------------------------------------------------------------------------------------------
  * Definicion de clase
@@ -38,8 +38,12 @@ public class Card implements interfases.Card {
      * Array con elementos en comun entre 2 cartas
      * --------------------------------------------------------------------------------------------- */
     public ArrayList<Integer> EleComun(Card carta2){
-        carta.retainAll(carta2.getCarta());
-        return carta;
+        Card cartaAux = new Card();
+        Card cartaAux2 = new Card();
+        cartaAux2.setCarta(carta);
+        cartaAux2.CopyCard(cartaAux);
+        cartaAux.getCarta().retainAll(carta2.getCarta());
+        return cartaAux.getCarta();
     }
     /*-------------------------------------------------------------------------------------------
      * Añadir elemento a una carta
@@ -54,7 +58,6 @@ public class Card implements interfases.Card {
         carta.clear();
         return carta;
     }
-
     /*-------------------------------------------------------------------------------------------
      * Copia los elementos de 1 carta hacia otra
      * --------------------------------------------------------------------------------------------- */
@@ -64,17 +67,20 @@ public class Card implements interfases.Card {
             card2.addECarta(carta.get(i));
         }
     }
-
+    //---------------------------------------------------------------------------------------------------
+    public void cardRandom(){
+        Collections.shuffle(carta);
+    }
+    //---------------------------------------------------------------------------------------------------
     // CARD EQUAL
     //------------------------------------------------------------------------------------------------
     // nota de que pasa si la carta esta desordenanda
-    public boolean CardEqual(Card card){
-        if(carta.size() == card.TamCard()){
-            for(int i=0; i<carta.size();i++){
-                if(carta.get(i) != card.getCarta().get(i)){
-                    return false;
-                }
-            }
+    @Override
+    public boolean equals(Object o){
+        Card card = (Card) o;
+        Card card2 = new Card();
+        card2.setCarta(carta);
+        if(carta.size() == card.TamCard() && card.EleComun(card2).size() == carta.size()){
             return true;
         }
         else{
@@ -82,18 +88,6 @@ public class Card implements interfases.Card {
         }
     }
     //---------------------------------------------------------------------------------------------------
-    public void cardRandom(){
-        Collections.shuffle(carta);
-    }
-    //---------------------------------------------------------------------------------------------------
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Card card = (Card) o;
-        return Objects.equals(carta, card.carta);
-    }
     @Override
     public String toString() {
         return carta+"";

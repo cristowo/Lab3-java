@@ -1,6 +1,5 @@
 package main;
 
-import model.Card;
 import view.Menu;
 public class Main{
     public static void main(String [] arg) {
@@ -9,6 +8,7 @@ public class Main{
         Player p2 = new Player("juan");
         System.out.println(p1.equals(p2));
          */
+        /*
         Card c1 = new Card();
         Card c2 = new Card();
         c1.addECarta(2);
@@ -16,6 +16,7 @@ public class Main{
         c2.addECarta(3);
         c2.addECarta(2);
         System.out.println(c1.equals(c2));
+         */
         /*
         Dobble mazo = new Dobble(9, -1, false);
         //System.out.println(mazo.nthCard(0));

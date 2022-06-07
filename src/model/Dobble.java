@@ -1,8 +1,7 @@
 package model;
 
-import java.util.Objects;
-import java.util.Random;
 import java.util.ArrayList;
+import java.util.Random;
 
 /*-------------------------------------------------------------------------------------------
 * Definicion de clase
@@ -67,6 +66,7 @@ public class Dobble implements interfases.Dobble {
             }
             this.mazo = AllCardsCut;
         }
+        this.Largo = mazo.size();
     }
     /*-------------------------------------------------------------------------------------------
     * Obtener mazo
@@ -78,6 +78,15 @@ public class Dobble implements interfases.Dobble {
     public void setMazo(ArrayList<Card> mazo) {
         this.mazo = mazo;
     }
+
+    public Integer getLargo() {
+        return Largo;
+    }
+
+    public void setLargo(Integer largo) {
+        Largo = largo;
+    }
+
     /*-------------------------------------------------------------------------------------------
     * nthCard desde 0
     * --------------------------------------------------------------------------------------------- */
@@ -116,10 +125,9 @@ public class Dobble implements interfases.Dobble {
             }
         }
         for(int i=0; i < mazo.size();i++) {
-            Card cardAux = new Card();
             for (int j=i+1; j < mazo.size(); j++) {
-                (mazo.get(i)).CopyCard(cardAux);
-                if( ( cardAux.EleComun(mazo.get(j))).size() != 1 ){     //caso cuando hay 0 o mas de 1 elemento en comun
+                if( ( mazo.get(i).EleComun(mazo.get(j))).size() != 1 ){     //caso cuando hay 0 o mas de 1 elemento en comun
+                    System.out.println(mazo.get(i)+"2");
                     System.out.println("---------------------------------------");
                     System.out.println("-----------Mazo No Funcional-----------");
                     System.out.println("---------------------------------------");
@@ -181,15 +189,28 @@ public class Dobble implements interfases.Dobble {
     //--------EQUAL---------------------------------------------------------------------------------------
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dobble dobble = (Dobble) o;
-        return Objects.equals(Largo, dobble.Largo) && Objects.equals(NumC, dobble.NumC) && Objects.equals(mazo, dobble.mazo);
+        Dobble mazo2 = (Dobble) o;
+        if(mazo.size() != mazo2.getMazo().size()){
+            return false;
+        }
+        else{
+            int aux = 0;
+            for(int i=0; i<mazo.size();i++){
+                for(int j=0; j<mazo2.getLargo();j++){
+                    if(mazo.get(i).equals(mazo2.getMazo().get(j))){
+                        aux++;
+                    }
+                }
+            }
+            if(aux == mazo.size()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
     }
-
     //-------------------------------------------------------------------------------------------------------
-
-
     /*-------------------------------------------------------------------------------------------
      * MazoToString
      * --------------------------------------------------------------------------------------------- */
