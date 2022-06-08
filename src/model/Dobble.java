@@ -196,7 +196,7 @@ public class Dobble implements interfases.Dobble {
         else{
             int aux = 0;
             for(int i=0; i<mazo.size();i++){
-                for(int j=0; j<mazo2.getLargo();j++){
+                for(int j=0; j<mazo2.getMazo().size();j++){
                     if(mazo.get(i).equals(mazo2.getMazo().get(j))){
                         aux++;
                     }

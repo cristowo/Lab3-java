@@ -1,6 +1,7 @@
 package main;
 
 import view.Menu;
+
 public class Main{
     public static void main(String [] arg) {
         /*
@@ -23,7 +24,6 @@ public class Main{
         //System.out.println(mazo);
         System.out.println(mazo.isDobble());
          */
-
         Menu menu = new Menu();
         menu.ejecutarMenu();
     }

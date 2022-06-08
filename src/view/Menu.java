@@ -123,7 +123,6 @@ public class Menu {
                                         newName = scan.nextLine();
                                         Tablero.registUser(newName);
                                     }
-                                    Tablero.setEstado("En progreso");
                                     Exit = 3;
                                     break;
                                 }
@@ -152,8 +151,9 @@ public class Menu {
                     case 1:
                         int Seleccion = 0;
                         int posicion =0;
+                        Tablero.setEstado("En progreso");
                         while(Tablero.getEstado().equals("En progreso")) {
-                            if( 2 < Tablero.getMazoDobblegame().getLargo()){
+                            if(  2 < Tablero.getMazoDobblegame().getMazo().size()){
                                 posicion = Tablero.getPosicionForName(Tablero.whoseTurnIs());
                                 System.out.println("---------------------------------------");
                                 System.out.println("-----------THE DOBBLE GAME-------------");
