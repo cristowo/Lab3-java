@@ -23,6 +23,7 @@ public class Menu {
             switch (eleccion) {
                 case 1:
                     while (Exit < 2) {
+                        // SELECCIONAR MODO DE JUEGO
                         System.out.println("---------------------------------------");
                         System.out.println("-----------THE DOBBLE GAME-------------");
                         System.out.println("--Porfavor seleccione modo de juego:---");
@@ -33,6 +34,7 @@ public class Menu {
                         int eleccion2 = scan.nextInt();
                         switch (eleccion2) {
                             case 1:
+                                // REGLAS GENERALES STACK MODE
                                 System.out.println("---------------------------------------");
                                 System.out.println("-----------THE DOBBLE GAME-------------");
                                 System.out.println("------ Ha seleccionado Stack MODE -----");
@@ -44,24 +46,27 @@ public class Menu {
                                 enter.nextLine();
 
                                 while (Exit < 2) {
+                                    // CANTIDAD DE ELEMENTOS POR CARTA
                                     System.out.println("---------------------------------------");
                                     System.out.println("-----------THE DOBBLE GAME-------------");
                                     System.out.println("---Ingrese la cantidad de elementos:---");
                                     System.out.println("(Tome en cuenta solo numeros no primos)");
                                     System.out.println("---------------------------------------");
                                     int numElem = scan.nextInt();
-
+                                    // CANTIDAD DE JUGADORES A REGISTRAR
                                     System.out.println("---------------------------------------");
                                     System.out.println("-----------THE DOBBLE GAME-------------");
                                     System.out.println("---Ingrese la cantidad de jugadores:---");
                                     System.out.println("---------------------------------------");
                                     int numPlayers = scan.nextInt();
+                                    // CASO DE JUGAR SOLO
                                     if(numPlayers <= 1){
                                         System.out.println("---------------------------------------");
                                         System.out.println("--------NO PUEDES JUGAR SOLO!!!--------");
                                         System.out.println("---------------------------------------");
                                         break;
                                     }
+                                    // CASO MAZO INVALIDO
                                     Tablero = new DobbleGame(numPlayers, numElem, "Stack");
                                     if(Tablero.getMazoDobblegame().isDobble() == false){
                                         System.out.println("---------------------------------------");
@@ -72,6 +77,7 @@ public class Menu {
                                     //System.out.println(Tablero.getMazoDobblegame());
 
                                     String newName = scan.nextLine();
+                                    // REGISTRAR JUGADORES
                                     while(0<Tablero.getNumPlayers()){
                                         System.out.println("---------------------------------------");
                                         System.out.println("-----------THE DOBBLE GAME-------------");
@@ -87,6 +93,7 @@ public class Menu {
                                 }
                                 break;
                             case 2:
+                                // REGLAS GENERALES MODO VS CPU
                                 System.out.println("---------------------------------------");
                                 System.out.println("-----------THE DOBBLE GAME-------------");
                                 System.out.println("-- Ha seleccionado PLAYER VS CPU MODE -");
@@ -99,13 +106,14 @@ public class Menu {
                                 enter.nextLine();
 
                                 while (Exit < 2) {
+                                    // CANTIDAD DE ELEMENTOS POR CARTA
                                     System.out.println("---------------------------------------");
                                     System.out.println("-----------THE DOBBLE GAME-------------");
                                     System.out.println("---Ingrese la cantidad de elementos:---");
                                     System.out.println("(Tome en cuenta solo numeros no primos)");
                                     System.out.println("---------------------------------------");
                                     int numElem = scan.nextInt();
-
+                                    // COMPROBAR MAZO VALIDO
                                     Tablero = new DobbleGame(2, numElem, "VSCPU");
                                     if (Tablero.getMazoDobblegame().isDobble() == false) {
                                         System.out.println("---------------------------------------");
@@ -115,6 +123,7 @@ public class Menu {
                                     }
                                     Tablero.registUser("CPU");
                                     String newName = scan.nextLine();
+                                    // REGISTRAR USUARIO HASTA QUE SEA VALIDO
                                     while (0 < Tablero.getNumPlayers()) {
                                         System.out.println("---------------------------------------");
                                         System.out.println("-----------THE DOBBLE GAME-------------");
@@ -128,6 +137,7 @@ public class Menu {
                                 }
                                 break;
                             case 3:
+                                // SALIDA
                                 System.out.println("Hasta luego!!!");
                                 Exit = 2;
                                 break;
@@ -135,10 +145,12 @@ public class Menu {
                     }
                     break;
                 case 2:
+                    // SALIDA
                     System.out.println("Hasta luego!!!");
                     Exit = 2;
                     break;
             }
+            // INICIO JUEGO
             if(Exit == 3){
                 System.out.println("---------------------------------------");
                 System.out.println("-----------THE DOBBLE GAME-------------");
@@ -153,6 +165,7 @@ public class Menu {
                         int posicion =0;
                         Tablero.setEstado("En progreso");
                         while(Tablero.getEstado().equals("En progreso")) {
+                            // DESARROLLO DEL JUEGO
                             if(  2 < Tablero.getMazoDobblegame().getMazo().size()){
                                 posicion = Tablero.getPosicionForName(Tablero.whoseTurnIs());
                                 System.out.println("---------------------------------------");
@@ -162,15 +175,19 @@ public class Menu {
                                 System.out.println("---------------------------------------");
                                 System.out.println("---- " + Tablero.getMazoDobblegame().getMazo().get(0) + " --- " + Tablero.getMazoDobblegame().getMazo().get(1) + " ----");
                                 System.out.println("---------------------------------------");
+                                // PLAYER VS PLAYER
                                 if (Tablero.getModalidad().equals("Stack")){
                                     System.out.println("---Escriba 0 si desea pasar su turno---");
                                     System.out.println("-Escriba -1 si desea finalizar el game-");
                                     System.out.println("---------------------------------------");
                                     Seleccion = scan.nextInt();
                                 }
+                                // VS CPU
                                 else if (Tablero.getModalidad().equals("VSCPU")){
                                     Random random = new Random();
+                                    // TURNO CPU, SE PIDE TOCAR ENTER
                                     if(Tablero.whoseTurnIs().equals("CPU")){
+                                        // PROBABILIDAD DE QUE EL CPU GANE 1 PUNTO = 66,666%
                                         int numRandom = random.nextInt(3);
                                         if(numRandom <= 2){
                                             Seleccion = Tablero.getMazoDobblegame().getMazo().get(0).EleComun(Tablero.getMazoDobblegame().getMazo().get(1)).get(0);
@@ -182,6 +199,7 @@ public class Menu {
                                         System.out.println("---------------------------------------");
                                         enter.nextLine();
                                     }
+                                    // TURNO PLAYER
                                     else{
                                         System.out.println("---Escriba 0 si desea pasar su turno---");
                                         System.out.println("-Escriba -1 si desea finalizar el game-");
@@ -195,6 +213,7 @@ public class Menu {
                                 Tablero.setEstado("Finalizado");
                             }
                         }
+                        // FIN DEL JUEGO
                         System.out.println("---------------------------------------");
                         System.out.println("-----------THE DOBBLE GAME-------------");
                         System.out.println("---------- Juego terminado ------------");

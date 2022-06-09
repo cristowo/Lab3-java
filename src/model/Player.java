@@ -82,7 +82,7 @@ public class Player implements interfases.Player{
 
     /**
      * Convierte el contendio de Player a String
-     * @return name (String), turno(Integer) y puntos (Integer)
+     * @return name, turno, puntos como String
      */
     @Override
     public String toString() {
