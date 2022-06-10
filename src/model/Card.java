@@ -56,7 +56,7 @@ public class Card implements interfases.Card {
     }
 
     /**
-     * añade una numero (Integer) a una carta(card)
+     * Añade una numero (Integer) a una carta(card)
      * @ param card (ArrayList<Integer>).
      */
     public void addECarta(int a) {
@@ -84,7 +84,7 @@ public class Card implements interfases.Card {
     }
 
     /**
-     * desordena los numeros de una carta (Card)
+     * Desordena los numeros de una carta (Card)
      * @ param carta (Card).
      */
     public void cardRandom(){
