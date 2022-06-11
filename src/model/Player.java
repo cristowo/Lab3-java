@@ -3,7 +3,7 @@ package model;
 import java.util.Objects;
 
 /**
- * Clase que simula un jugador, el almacena 2 Interger (turnos y puntos) y 1 String (name)
+ * Clase que simula un jugador, almacena 2 Interger (turnos y puntos) y 1 String (name)
  * @version 11.0.14.1
  * @autor: Cristobal Marchant
  */

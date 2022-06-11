@@ -9,28 +9,37 @@ Espacio de trabajo para la realizacion del laboratorio 3 de paradigmas de progra
 
 a continuación los objetivos a realizar y su estado hasta el momento
 
-### MENU              |EN PROGRESO
-En progreso
+### MENU              |LISTO
+Listo menu
+Modo Stack Listo
+Modo Player Vs CPU Listo
 
-### DobbleGame        |EN PROGRESO
+### DobbleGame        |LISTO
+Get and Set Listo
 whoseTurnis Listo
 register Listo
-Se añadio funciones extras
+Play Listo
+Finish Listo
+Equals Listo
+Funciones adicionales
 
-### Dobble            |LISTO?
-
-Cardsset avanzado
+### Dobble            |LISTO
+Get and Set Listo
+Cardsset List
 NthCard Listo
 isDouble Listo
 elementRequerid Listo
 numCards Listo
 FindTotalCards Listo
 Missing Cards Listo
+AddCard Listo
+Equals Listo
 
-### Card              |LISTO?
-
+### Card              |LISTO
+Get and Set Listo
 Clase Card realizada
-Se añadio funciones extras
+Equals Listo
 
-### Player            |LISTO?
-si
+### Player            |LISTO
+Get and Set Listo
+Equals Listo

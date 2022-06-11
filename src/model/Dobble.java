@@ -3,9 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-/*-------------------------------------------------------------------------------------------
-* Definicion de clase
-* --------------------------------------------------------------------------------------------- */
+/**
+ * Clase que simula un mazo de cartas, posee 2 Integer(Largo y NumC) y 1 Arraylist<Card> (mazo).
+ * @version 11.0.14.1
+ * @autor: Cristobal Marchant
+ */
 public class Dobble implements interfases.Dobble {
     private Integer Largo; //NumE
     private Integer NumC;

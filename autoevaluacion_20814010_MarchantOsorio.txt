@@ -1,0 +1,29 @@
+Cristóbal Marchant      20.814.010-8
+
+Requerimientos Funcionales 			Calificación
+
+Menu interactivo por terminal				1
+
+Class Player e interfaz Player 				1
+equals							1
+
+Class Card e interfaz Card				1
+equals							1
+
+Class Dobble e Dobble 					1
+IsDobble						1
+NthCard							1
+FindTotalCards						1
+MissingCards						1
+ToString						1
+ADDCard							1
+equals							1
+
+Class DobbleGame e interfaz DobbleGame			1
+Register						1	
+WhoseTurnIsIt						1
+Play							1
+Status							1
+Score							1
+ToString						1	
+equals							1
